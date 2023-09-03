@@ -83,7 +83,7 @@ class _DetectCancerScreenState extends State<DetectCancerScreen> {
   Future getImage(ImageSource imgSource) async {
     //getting the user selected image
     final img = await ImagePicker().pickImage(source: imgSource);
-    print(img?.path);
+
     //dismissing the bottom sheet
     Navigator.of(context).pop();
     if (img != null) {
