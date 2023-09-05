@@ -1,9 +1,8 @@
 import 'package:e_derma/screens/splash_screen.dart';
-import 'package:e_derma/services/disease_data.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
-  DiseaseData().init();
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,

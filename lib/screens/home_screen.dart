@@ -10,7 +10,7 @@ import 'package:e_derma/services/ml_service.dart';
 import '../ui_components/side_bar_menu.dart';
 import '../models/result_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'help_screen.dart';
+import 'faqs_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HelpScreen()));
+                                builder: (context) => const FaqsScreen()));
                       },
                       child: const Icon(Icons.help_rounded)),
                 )

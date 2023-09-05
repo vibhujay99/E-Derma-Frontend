@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:e_derma/models/weather_model.dart';
-import 'package:e_derma/services/weather_service.dart';
+
 
 class ImageTips extends StatefulWidget {
   const ImageTips({Key? key}) : super(key: key);
