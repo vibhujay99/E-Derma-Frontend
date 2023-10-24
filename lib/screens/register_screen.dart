@@ -21,7 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   //controls the email text field
   final TextEditingController fullName = TextEditingController();
 
-  //controls the phone number text field
+  //controls the phone text field
   final TextEditingController phoneNum = TextEditingController();
 
   //controls the password text field
