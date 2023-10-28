@@ -1,7 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:e_derma/screens/faqs_screen.dart';
-import 'package:e_derma/screens/severity_results_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,19 +9,19 @@ import 'package:e_derma/ui_components/image_tips.dart';
 import 'package:e_derma/services/ml_service.dart';
 import '../ui_components/side_bar_menu.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:e_derma/screens/lesion_results_screen.dart';
 
-class DetectSeverityScreen extends StatefulWidget {
-  const DetectSeverityScreen({Key? key}) : super(key: key);
+class DetectSkinLesion extends StatefulWidget {
+  const DetectSkinLesion({super.key});
 
   @override
-  _DetectSeverityScreenState createState() => _DetectSeverityScreenState();
+  State<DetectSkinLesion> createState() => _DetectSkinLesionState();
 }
 
-class _DetectSeverityScreenState extends State<DetectSeverityScreen> {
-  //creating an instance of the ML Service class
+class _DetectSkinLesionState extends State<DetectSkinLesion> {
+
   MLService mlService = MLService();
 
-  @override
   void initState() {
     super.initState();
   }
@@ -102,7 +101,7 @@ class _DetectSeverityScreenState extends State<DetectSeverityScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SeverityResultsScreen(
+              builder: (context) => LesionResultsScreen(
                 image: image,
                 result: result.getBestMatch(),
               ),
@@ -171,12 +170,12 @@ class _DetectSeverityScreenState extends State<DetectSeverityScreen> {
             body: SingleChildScrollView(
               child: Center(
                   child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  buildHomeBody(),
-                ],
-              )),
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      buildHomeBody(),
+                    ],
+                  )),
             ),
           ),
         ),
@@ -239,7 +238,7 @@ class _DetectSeverityScreenState extends State<DetectSeverityScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               const Text(
-                                'DETECT DISEASE SEVERITY',
+                                'CLASSIFY SKIN LESIONS',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 22,
@@ -252,12 +251,12 @@ class _DetectSeverityScreenState extends State<DetectSeverityScreen> {
                               ),
                               SizedBox(
                                   height: 100,
-                                  child: Lottie.asset('images/warning.json')),
+                                  child: Lottie.asset('images/lesion.json')),
                               const SizedBox(
                                 height: 25,
                               ),
                               Text(
-                                'Check disease severity within seconds!',
+                                'Classify skin lesion within seconds!',
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black.withOpacity(0.75),
@@ -330,7 +329,7 @@ class _DetectSeverityScreenState extends State<DetectSeverityScreen> {
                               '''Quality of the photo will\nalways affect the final result''',
                               style: TextStyle(
                                   color:
-                                      const Color(0xff0F00FF).withOpacity(0.7),
+                                  const Color(0xff0F00FF).withOpacity(0.7),
                                   fontSize: 15.sp),
                               textAlign: TextAlign.left,
                             ),
@@ -349,14 +348,15 @@ class _DetectSeverityScreenState extends State<DetectSeverityScreen> {
         ),
         loading
             ? SizedBox(
-                height: MediaQuery.of(context).size.height -
-                    AppBar().preferredSize.height -
-                    kBottomNavigationBarHeight,
-                child: Align(
-                    alignment: Alignment.center,
-                    child: CircularProgressIndicator()))
+            height: MediaQuery.of(context).size.height -
+                AppBar().preferredSize.height -
+                kBottomNavigationBarHeight,
+            child: Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator()))
             : const SizedBox(),
       ],
     );
   }
 }
+

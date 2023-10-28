@@ -241,7 +241,7 @@ class _DetectCancerScreenState extends State<DetectCancerScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'DETECT CANCER',
+                        'CLASSIFY CANCER',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22,
@@ -259,7 +259,7 @@ class _DetectCancerScreenState extends State<DetectCancerScreen> {
                         height: 25,
                       ),
                       Text(
-                        'Identify skin cancers within seconds!',
+                        'Classify skin cancers within seconds!',
                         style: TextStyle(
                             fontSize: 14,
                             color: Colors.black.withOpacity(0.75),
