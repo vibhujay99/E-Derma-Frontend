@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:e_derma/app_config.dart';
 import 'package:e_derma/models/cancer_classification_result_model.dart';
 import 'package:e_derma/models/cancer_severity_model.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide FormData, Response, MultipartFile;
 import 'package:http_parser/http_parser.dart';
 
 class MLService {
@@ -23,6 +25,17 @@ class MLService {
         await dio.post('/classify_cancer', data: formData,);
 
     if (response.statusCode == 200) {
+      if(response.data == "Invalid"){
+        Get.showSnackbar(
+          const GetSnackBar(
+            title: "Random Image",
+            message: 'Use a skin related image',
+            icon: Icon(Icons.info_outline_rounded),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        return null;
+      }
       final res = CancerClassificationResult.fromJson(response.data);
       return res;
     } else {
