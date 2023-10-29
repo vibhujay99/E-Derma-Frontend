@@ -116,66 +116,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         SizedBox(
                           height: 10.h,
                         ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //   children: [
-                        //     InkWell(
-                        //       onTap: () {
-                        //         setState(() {
-                        //           detailsSelected = true;
-                        //         });
-                        //       },
-                        //       child: Container(
-                        //         alignment: Alignment.center,
-                        //         height: 40.h,
-                        //         width: 155.w,
-                        //         decoration: BoxDecoration(
-                        //             color: detailsSelected
-                        //                 ? const Color(0xff332FD0)
-                        //                 : const Color(0xffD1D1D1)
-                        //                     .withOpacity(0.45),
-                        //             borderRadius: BorderRadius.circular(12.r)),
-                        //         //disease description
-                        //         child: Text(
-                        //           "Details",
-                        //           style: TextStyle(
-                        //               color: detailsSelected
-                        //                   ? Colors.white
-                        //                   : const Color(0xff686868),
-                        //               fontSize: 14),
-                        //           textAlign: TextAlign.center,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //     InkWell(
-                        //       onTap: () {
-                        //         setState(() {
-                        //           detailsSelected = false;
-                        //         });
-                        //       },
-                        //       child: Container(
-                        //         alignment: Alignment.center,
-                        //         height: 40.h,
-                        //         width: 155.w,
-                        //         decoration: BoxDecoration(
-                        //             color: detailsSelected
-                        //                 ? const Color(0xffD1D1D1)
-                        //                     .withOpacity(0.45)
-                        //                 : const Color(0xff332FD0),
-                        //             borderRadius: BorderRadius.circular(12.r)),
-                        //         child: Text(
-                        //           "Remedies",
-                        //           style: TextStyle(
-                        //               color: detailsSelected
-                        //                   ? const Color(0xff686868)
-                        //                   : Colors.white,
-                        //               fontSize: 14),
-                        //           textAlign: TextAlign.center,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
+
                         SizedBox(
                           height: 5.h,
                         ),
@@ -241,8 +182,4 @@ class _ResultScreenState extends State<ResultScreen> {
     );
   }
 
-  //treatment tab
-  Widget remedyTab(String remedy) {
-    return SizedBox();
-  }
 }
