@@ -47,6 +47,7 @@ dependencies:
   is_first_run: ^1.0.0
   dio: ^5.3.0
   get: ^4.6.6
+  video_player: ^2.7.0
 
 dev_dependencies:
   flutter_test:
