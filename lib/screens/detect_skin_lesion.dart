@@ -1,6 +1,5 @@
-import 'package:e_derma/data/lesion_data.dart';
-import 'package:e_derma/models/lesion_result_model.dart';
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:e_derma/screens/faqs_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -20,6 +19,7 @@ class DetectSkinLesion extends StatefulWidget {
 }
 
 class _DetectSkinLesionState extends State<DetectSkinLesion> {
+
   MLService mlService = MLService();
 
   void initState() {
@@ -90,7 +90,7 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
       });
       try {
         //running the tflite model on the image
-        final result = await mlService.lesionClassify(image);
+        final result = await mlService.checkSeverity(image);
         print(result);
         setState(() {
           loading = false;
@@ -102,11 +102,8 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
             context,
             MaterialPageRoute(
               builder: (context) => LesionResultsScreen(
-                lesionResultModel: LesionResultModel(
-                    lesionDetails:
-                        LesionDetails(result: result.getBestMatch().result),
-                    imagePreview: image,
-                    confidence: result.getBestMatch().confidence),
+                image: image,
+                result: result.getBestMatch(),
               ),
             ),
           );
@@ -115,11 +112,11 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
       } catch (e) {
         //if the model fails to predict then showing a toast
         Fluttertoast.showToast(
-            msg: "Done",
+            msg: (e as DioException).error.toString(),
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
-            backgroundColor: Colors.yellowAccent,
+            backgroundColor: Colors.red,
             textColor: Colors.white,
             fontSize: 16.0);
       }
@@ -173,12 +170,12 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
             body: SingleChildScrollView(
               child: Center(
                   child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  buildHomeBody(),
-                ],
-              )),
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      buildHomeBody(),
+                    ],
+                  )),
             ),
           ),
         ),
@@ -332,7 +329,7 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
                               '''Quality of the photo will\nalways affect the final result''',
                               style: TextStyle(
                                   color:
-                                      const Color(0xff0F00FF).withOpacity(0.7),
+                                  const Color(0xff0F00FF).withOpacity(0.7),
                                   fontSize: 15.sp),
                               textAlign: TextAlign.left,
                             ),
@@ -351,14 +348,15 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
         ),
         loading
             ? SizedBox(
-                height: MediaQuery.of(context).size.height -
-                    AppBar().preferredSize.height -
-                    kBottomNavigationBarHeight,
-                child: Align(
-                    alignment: Alignment.center,
-                    child: CircularProgressIndicator()))
+            height: MediaQuery.of(context).size.height -
+                AppBar().preferredSize.height -
+                kBottomNavigationBarHeight,
+            child: Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator()))
             : const SizedBox(),
       ],
     );
   }
 }
+
