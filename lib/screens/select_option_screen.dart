@@ -90,12 +90,18 @@ class _SelectOptionScreenState extends State<SelectOptionScreen> {
                   children: [
                     Text(
                       "Classify Cancer",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                     SizedBox(
                       width: 5,
                     ),
-                    Icon(Icons.search_rounded, color: Colors.white,)
+                    Icon(
+                      Icons.search_rounded,
+                      color: Colors.white,
+                    )
                   ],
                 ),
               ),
@@ -122,12 +128,18 @@ class _SelectOptionScreenState extends State<SelectOptionScreen> {
                   children: [
                     Text(
                       "Check Severity",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                     SizedBox(
                       width: 5,
                     ),
-                    Icon(Icons.info_outline, color: Colors.white,),
+                    Icon(
+                      Icons.info_outline,
+                      color: Colors.white,
+                    ),
                   ],
                 ),
               ),
@@ -136,7 +148,7 @@ class _SelectOptionScreenState extends State<SelectOptionScreen> {
               ),
               MaterialButton(
                 padding:
-                const EdgeInsets.symmetric(horizontal: 60, vertical: 75),
+                    const EdgeInsets.symmetric(horizontal: 60, vertical: 75),
                 color: Colors.redAccent.withOpacity(0.65),
                 onPressed: () {
                   Navigator.push(
@@ -154,12 +166,18 @@ class _SelectOptionScreenState extends State<SelectOptionScreen> {
                   children: [
                     Text(
                       "Lesion Classification",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                     SizedBox(
                       width: 5,
                     ),
-                    Icon(Icons.category_outlined, color: Colors.white,),
+                    Icon(
+                      Icons.category_outlined,
+                      color: Colors.white,
+                    ),
                   ],
                 ),
               ),
@@ -168,7 +186,7 @@ class _SelectOptionScreenState extends State<SelectOptionScreen> {
               ),
               MaterialButton(
                 padding:
-                const EdgeInsets.symmetric(horizontal: 70, vertical: 75),
+                    const EdgeInsets.symmetric(horizontal: 70, vertical: 75),
                 color: Colors.green.withOpacity(0.65),
                 onPressed: () {
                   Navigator.push(
@@ -186,20 +204,24 @@ class _SelectOptionScreenState extends State<SelectOptionScreen> {
                   children: [
                     Text(
                       "Disease Diagnosis",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                     SizedBox(
                       width: 5,
                     ),
-                    Icon(Icons.face_retouching_natural_outlined, color: Colors.white,),
+                    Icon(
+                      Icons.face_retouching_natural_outlined,
+                      color: Colors.white,
+                    ),
                   ],
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-
-
             ],
           ),
         ),

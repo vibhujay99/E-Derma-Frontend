@@ -21,11 +21,13 @@ class MLService {
     });
 
     // Make the request.
-    final Response response =
-        await dio.post('/classify_cancer', data: formData,);
+    final Response response = await dio.post(
+      '/classify_cancer',
+      data: formData,
+    );
 
     if (response.statusCode == 200) {
-      if(response.data == "Invalid"){
+      if (response.data == "Invalid") {
         Get.showSnackbar(
           const GetSnackBar(
             title: "Random Image",
@@ -56,8 +58,10 @@ class MLService {
     });
 
     // Make the request.
-    final Response response =
-    await dio.post('/check_severity', data: formData,);
+    final Response response = await dio.post(
+      '/check_severity',
+      data: formData,
+    );
 
     if (response.statusCode == 200) {
       final res = response.data;

@@ -20,7 +20,6 @@ class DetectSkinLesion extends StatefulWidget {
 }
 
 class _DetectSkinLesionState extends State<DetectSkinLesion> {
-
   MLService mlService = MLService();
 
   void initState() {
@@ -171,12 +170,12 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
             body: SingleChildScrollView(
               child: Center(
                   child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      buildHomeBody(),
-                    ],
-                  )),
+                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  buildHomeBody(),
+                ],
+              )),
             ),
           ),
         ),
@@ -330,7 +329,7 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
                               '''Quality of the photo will\nalways affect the final result''',
                               style: TextStyle(
                                   color:
-                                  const Color(0xff0F00FF).withOpacity(0.7),
+                                      const Color(0xff0F00FF).withOpacity(0.7),
                                   fontSize: 15.sp),
                               textAlign: TextAlign.left,
                             ),
@@ -372,15 +371,14 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
         ),
         loading
             ? SizedBox(
-            height: MediaQuery.of(context).size.height -
-                AppBar().preferredSize.height -
-                kBottomNavigationBarHeight,
-            child: Align(
-                alignment: Alignment.center,
-                child: CircularProgressIndicator()))
+                height: MediaQuery.of(context).size.height -
+                    AppBar().preferredSize.height -
+                    kBottomNavigationBarHeight,
+                child: Align(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator()))
             : const SizedBox(),
       ],
     );
   }
 }
-
