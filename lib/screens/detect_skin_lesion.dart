@@ -11,6 +11,7 @@ import 'package:e_derma/services/ml_service.dart';
 import '../ui_components/side_bar_menu.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:e_derma/screens/lesion_results_screen.dart';
+import 'package:e_derma/screens/VideoPlayer.dart';
 
 class DetectSkinLesion extends StatefulWidget {
   const DetectSkinLesion({super.key});
@@ -342,7 +343,30 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
                     ),
                     const SizedBox(
                       height: 20,
-                    )
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => VideoApp()));
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 120.w),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 40.w, vertical: 15.h),
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(50)),
+                        child: const Text(
+                          'AR Video',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
