@@ -17,7 +17,7 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset("images/video.mp4")
+    _controller = VideoPlayerController.asset("images/AR-video.mp4")
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
