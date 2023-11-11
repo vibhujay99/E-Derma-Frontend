@@ -1,5 +1,6 @@
+import 'package:e_derma/data/lesion_data.dart';
+import 'package:e_derma/models/lesion_result_model.dart';
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:e_derma/screens/faqs_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -10,7 +11,6 @@ import 'package:e_derma/services/ml_service.dart';
 import '../ui_components/side_bar_menu.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:e_derma/screens/lesion_results_screen.dart';
-import 'package:e_derma/screens/VideoPlayer.dart';
 
 class DetectSkinLesion extends StatefulWidget {
   const DetectSkinLesion({super.key});
@@ -90,7 +90,7 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
       });
       try {
         //running the tflite model on the image
-        final result = await mlService.checkSeverity(image);
+        final result = await mlService.lesionClassify(image);
         print(result);
         setState(() {
           loading = false;
@@ -102,8 +102,11 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
             context,
             MaterialPageRoute(
               builder: (context) => LesionResultsScreen(
-                image: image,
-                result: result.getBestMatch(),
+                lesionResultModel: LesionResultModel(
+                    lesionDetails:
+                    LesionDetails(result: result.getBestMatch().result),
+                    imagePreview: image,
+                    confidence: result.getBestMatch().confidence),
               ),
             ),
           );
@@ -112,11 +115,11 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
       } catch (e) {
         //if the model fails to predict then showing a toast
         Fluttertoast.showToast(
-            msg: (e as DioException).error.toString(),
+            msg: "Done",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.yellowAccent,
             textColor: Colors.white,
             fontSize: 16.0);
       }
@@ -170,12 +173,12 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
             body: SingleChildScrollView(
               child: Center(
                   child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  buildHomeBody(),
-                ],
-              )),
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      buildHomeBody(),
+                    ],
+                  )),
             ),
           ),
         ),
@@ -329,7 +332,7 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
                               '''Quality of the photo will\nalways affect the final result''',
                               style: TextStyle(
                                   color:
-                                      const Color(0xff0F00FF).withOpacity(0.7),
+                                  const Color(0xff0F00FF).withOpacity(0.7),
                                   fontSize: 15.sp),
                               textAlign: TextAlign.left,
                             ),
@@ -339,30 +342,7 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
                     ),
                     const SizedBox(
                       height: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => VideoApp()));
-                      },
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 120.w),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 40.w, vertical: 15.h),
-                        decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(50)),
-                        child: const Text(
-                          'AR Video',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
+                    )
                   ],
                 ),
               ],
@@ -371,12 +351,12 @@ class _DetectSkinLesionState extends State<DetectSkinLesion> {
         ),
         loading
             ? SizedBox(
-                height: MediaQuery.of(context).size.height -
-                    AppBar().preferredSize.height -
-                    kBottomNavigationBarHeight,
-                child: Align(
-                    alignment: Alignment.center,
-                    child: CircularProgressIndicator()))
+            height: MediaQuery.of(context).size.height -
+                AppBar().preferredSize.height -
+                kBottomNavigationBarHeight,
+            child: Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator()))
             : const SizedBox(),
       ],
     );
